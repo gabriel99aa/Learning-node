@@ -1,20 +1,16 @@
 console.clear();
 import express from 'express';
+import dotenv from "dotenv";
+import accountRouter from "./routes/account.js";
 
-const PORT = 3000;
+dotenv.config();
+
+const PORT = process.env.PORT;
 const expressApp = express();
 
 expressApp.use(express.json());
 expressApp.use(express.text());
-
-
-expressApp.get("/mi-cuenta", (req, res) => {
-    res.send("Tu cuenta personal");
-})
-
-expressApp.post("", (req, res) => {
-    res.send("");
-})
+expressApp.use("/account", accountRouter);
 
 
 expressApp.listen(PORT, () => {
